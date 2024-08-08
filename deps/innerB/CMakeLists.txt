@@ -8,11 +8,7 @@ target_compile_features(InnerLibB PUBLIC cxx_std_20)
 
 target_sources(
     InnerLibB
-    PUBLIC
-        FILE_SET yk_inner_public_headers
-        TYPE HEADERS
-        BASE_DIRS include
-        FILES include/innerB.hpp
+    PUBLIC FILE_SET HEADERS BASE_DIRS include FILES include/innerB.hpp
     PRIVATE src/innerB.cpp
 )
 
@@ -23,7 +19,7 @@ include(GNUInstallDirs)
 install(
     TARGETS InnerLibB
     EXPORT InnerLibB-export
-    FILE_SET yk_inner_public_headers DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
