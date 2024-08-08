@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.23)
 
-project(OuterProj LANGUAGES CXX)
+project(OuterProj VERSION 0.0.1 LANGUAGES CXX)
 
 add_library(OuterLib STATIC)
 
@@ -29,6 +29,18 @@ target_link_libraries(OuterLib PUBLIC yk::InnerLibB)
 add_library(yk::OuterLib ALIAS OuterLib)
 
 include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/OuterLibConfigVersion.cmake
+    COMPATIBILITY AnyNewerVersion
+)
+
+configure_package_config_file(
+    cmake/OuterLibConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/OuterLibConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
+)
 
 install(
     TARGETS OuterLib
@@ -42,4 +54,11 @@ install(
     FILE OuterLibTargets.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
     NAMESPACE yk::
+)
+
+install(
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/OuterLibConfig.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/OuterLibConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
 )
