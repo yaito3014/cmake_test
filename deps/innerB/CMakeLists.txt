@@ -18,13 +18,18 @@ include(GNUInstallDirs)
 
 install(
     TARGETS InnerLibB
-    EXPORT InnerLibB-export
+    EXPORT InnerLibBTargets
     FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
+export(
+    EXPORT InnerLibBTargets
+    FILE ${CMAKE_CURRENT_BINARY_DIR}/InnerLibBTargets.cmake
+)
+
 install(
-    EXPORT InnerLibB-export
+    EXPORT InnerLibBTargets
     FILE InnerLibBTargets.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
     NAMESPACE yk::

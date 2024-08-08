@@ -44,13 +44,18 @@ configure_package_config_file(
 
 install(
     TARGETS OuterLib
-    EXPORT OuterLib-export
+    EXPORT OuterLibTargets
     FILE_SET yk_outer_public_headers DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
+export(
+    EXPORT OuterLibTargets
+    FILE ${CMAKE_CURRENT_BINARY_DIR}/OuterLibTargets.cmake
+)
+
 install(
-    EXPORT OuterLib-export
+    EXPORT OuterLibTargets
     FILE OuterLibTargets.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
     NAMESPACE yk::
