@@ -25,7 +25,7 @@ install(
 
 export(
     EXPORT InnerLibBTargets
-    FILE ${CMAKE_CURRENT_BINARY_DIR}/InnerLibBTargets.cmake
+    FILE ${CMAKE_CURRENT_BINARY_DIR}/InnerLibBConfig.cmake
 )
 
 install(

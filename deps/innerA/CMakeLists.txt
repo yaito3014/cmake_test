@@ -23,7 +23,7 @@ install(
 
 export(
     EXPORT InnerLibATargets
-    FILE ${CMAKE_CURRENT_BINARY_DIR}/InnerLibATargets.cmake
+    FILE ${CMAKE_CURRENT_BINARY_DIR}/InnerLibAConfig.cmake
 )
 
 install(
